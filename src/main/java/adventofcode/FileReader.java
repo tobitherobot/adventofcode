@@ -21,7 +21,7 @@ public class FileReader
 	{
 		try
 		{
-			File file = new File("src/main/resources/y"+y+"/d"+String.format("%02d", d)+".txt");
+			File file = new File("src/main/resources/y"+y+"/D"+String.format("%02d", d)+".txt");
 			is = new FileInputStream(file);
 			sc = new Scanner(is);
 		}

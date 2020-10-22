@@ -6,7 +6,7 @@ public class DayController
 	{
 		try
 		{
-			Class<?> cl = Class.forName("adventofcode.y"+y+".Day"+String.format("%02d", d));
+			Class<?> cl = Class.forName("adventofcode.y"+y+".D"+String.format("%02d", d));
 			
 			Day day = (Day) cl.getConstructor().newInstance();
 			day.solve();

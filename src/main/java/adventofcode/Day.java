@@ -2,12 +2,12 @@ package adventofcode;
 
 public interface Day 
 {	
-	public String star1();
-	public String star2();
+	public Object star1();
+	public Object star2();
 	
 	default void solve()
 	{
-		System.out.println("Star #1: " + star1());
-		System.out.println("Star #2: " + star2());
+		System.out.println("Star #1: " + String.valueOf(star1()));
+		System.out.println("Star #2: " + String.valueOf(star2()));
 	}
 }
