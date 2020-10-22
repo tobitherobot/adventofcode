@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class FileReader 
 {
@@ -31,11 +33,32 @@ public class FileReader
 		}
 	}
 	
+	/**
+	 * returns list of ints
+	 * @return list of ints
+	 */
 	public List<Integer> getIntList()
 	{
 		List<Integer> ints = new ArrayList<>();
 		while (sc.hasNextInt()) ints.add(sc.nextInt());
 		
 		return ints;
+	}
+	
+	/**
+	 * returns list of ints from split string
+	 * @param s regex
+	 * @return int list
+	 */
+	public List<Integer> getIntListSplit(String s)
+	{
+		return Arrays.stream(sc.next().split(s))
+				.map(Integer::parseInt)
+				.collect(Collectors.toList());
+	}
+	
+	public Scanner getScanner()
+	{
+		return sc;
 	}
 }
