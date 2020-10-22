@@ -17,7 +17,7 @@ public class D02 implements Day
 		code.set(2, 2);
 		intcode.run();
 		
-		return intcode.getOutput();
+		return intcode.getFirst();
 	}
 
 	public Object star2() 
@@ -33,7 +33,7 @@ public class D02 implements Day
 				intcode.set(2, v);
 				intcode.run();
 				
-				if (intcode.getOutput()==19690720) 
+				if (intcode.getFirst()==19690720) 
 				{
 					res = 100*n+v;
 					break;
