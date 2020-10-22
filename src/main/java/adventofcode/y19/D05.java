@@ -25,7 +25,7 @@ public class D05 implements Day
 		Intcode intcode = new Intcode(code);
 		
 		intcode.addInput(5);
-		intcode.debug();
+		intcode.run();
 		
 		return intcode.getLastOutput();
 	}

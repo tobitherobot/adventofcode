@@ -13,9 +13,6 @@ public class Intcode
 	
 	private int ptr;
 	
-	private boolean isFinished;
-	private boolean isBroken;
-	
 	public Intcode(List<Integer> o)
 	{
 		original = o;
@@ -27,7 +24,10 @@ public class Intcode
 		ptr = 0;
 	}
 	
-	public void step()
+	/**
+	 * do a single instruction
+	 */
+	public void step() throws IndexOutOfBoundsException
 	{
 		int opcode = code.get(ptr);
 		int[] modes = new int[] {opcode%100, opcode/100%10, opcode/1000%10, opcode/10000};
@@ -66,20 +66,19 @@ public class Intcode
 					break;
 				case 7: // lt: if param1 less than param2, it stores 1 in param3 (otherwise 0)
 					if (getValue(ptr+1, modes[1]) < getValue(ptr+2, modes[2])) {
-						code.set(getValue(ptr+3, modes[3]), 1);
+						code.set(code.get(ptr+3), 1);
 					}
-					else code.set(getValue(ptr+3, modes[3]), 0);
-					ptr += 3;
+					else code.set(code.get(ptr+3), 0);
+					ptr += 4;
 					break;
 				case 8: // eq: if param1 equals param2, it stores 1 in param3 (otherwise 0)
 					if (getValue(ptr+1, modes[1]) == getValue(ptr+2, modes[2])) {
-						code.set(getValue(ptr+3, modes[3]), 1);
+						code.set(code.get(ptr+3), 1);
 					}
-					else code.set(getValue(ptr+3, modes[3]), 0);
-					ptr += 3;
+					else code.set(code.get(ptr+3), 0);
+					ptr += 4;
 					break;
 				case 99: // end: end program
-					isFinished = true;
 					break;
 				default:
 					throw new NullPointerException("Opcode "+modes[0]+" not found!");
@@ -88,76 +87,119 @@ public class Intcode
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			isBroken = true;
 		}
 	}
 	
+	/**
+	 * run the entire intcode program
+	 */
 	public void run() 
-	{
-		while (!isFinished() && !isBroken) {
-			step();
+	{	
+		try
+		{
+			while (!isFinished()) {
+				step();
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * run the entire intcode program with current code displayed
+	 */
 	public void debug()
 	{		
-		while (!isFinished() && !isBroken) 
+		try
 		{
 			System.out.println(code);
-			step();
+			
+			while (!isFinished()) 
+			{
+				step();
+				System.out.println(code);
+			}
 		}
-		System.out.println("Finished!");
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public void reset()
-	{
-		code = new ArrayList<>(original);
-		ptr = 0;
-	}
-	
-	public void set(int index, int element)
-	{
-		code.set(index, element);
-	}
-	
-	public int get(int index)
-	{
-		return code.get(index);
-	}
-	
+	/**
+	 * convert the parameter with its mode to its value
+	 * @param value initial value
+	 * @param mode parameter mode
+	 * @return converted value
+	 */
 	private int getValue(int value, int mode)
 	{
 		if (mode==0) return code.get(code.get(value));
 		else return code.get(value);
 	}
 	
+	/**
+	 * manually change an int in the code
+	 * @param index index
+	 * @param element value
+	 */
+	public void set(int index, int element)
+	{
+		code.set(index, element);
+	}
+	
+	/**
+	 * manually get an int in the code
+	 * @param index index
+	 * @return current value at index
+	 */
+	public int get(int index)
+	{
+		return code.get(index);
+	}
+	
+	/**
+	 * reset the machine to initial intcode
+	 */
+	public void reset()
+	{
+		code = new ArrayList<>(original);
+		ptr = 0;
+	}
+	
+	/**
+	 * manually add an input
+	 * @param n value
+	 */
 	public void addInput(int n)
 	{
 		input.add(n);
 	}
 	
+	/**
+	 * get all the outputs
+	 * @return all outputs
+	 */
 	public List<Integer> getOutput()
 	{
 		return output;
 	}
 	
+	/**
+	 * get latest output
+	 * @return latest output
+	 */
 	public int getLastOutput()
 	{
 		return output.get(output.size()-1);
 	}
 	
-	public int getFirst()
-	{
-		return code.get(0);
-	}
-	
+	/**
+	 * returns if the machine is finished
+	 * @return is finished
+	 */
 	public boolean isFinished()
 	{
-		return isFinished;
-	}
-	
-	public boolean isBroken()
-	{
-		return isBroken;
+		return code.get(ptr)==99;
 	}
 }

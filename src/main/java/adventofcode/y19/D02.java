@@ -13,11 +13,11 @@ public class D02 implements Day
 		List<Integer> code = new FileReader(2, 19).getIntListSplit(",");
 		Intcode intcode = new Intcode(code);
 		
-		code.set(1, 12);
-		code.set(2, 2);
+		intcode.set(1, 12);
+		intcode.set(2, 2);
 		intcode.run();
 		
-		return intcode.getFirst();
+		return intcode.get(0);
 	}
 
 	public Object star2() 
@@ -33,7 +33,7 @@ public class D02 implements Day
 				intcode.set(2, v);
 				intcode.run();
 				
-				if (intcode.getFirst()==19690720) 
+				if (intcode.get(0)==19690720) 
 				{
 					res = 100*n+v;
 					break;
