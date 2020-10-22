@@ -46,15 +46,28 @@ public class FileReader
 	}
 	
 	/**
-	 * returns list of ints from split string
+	 * returns split string as list of ints
 	 * @param s regex
-	 * @return int list
+	 * @return list of ints
 	 */
 	public List<Integer> getIntListSplit(String s)
 	{
 		return Arrays.stream(sc.next().split(s))
 				.map(Integer::parseInt)
 				.collect(Collectors.toList());
+	}
+	
+	/**
+	 * returns split arrays of strings as list
+	 * @param s regex
+	 * @return list of string arrays
+	 */
+	public List<String[]> getStringListSplitArray(String s)
+	{
+		List<String[]> strings = new ArrayList<>();
+		while (sc.hasNext()) strings.add(sc.next().split(s));
+		
+		return strings;
 	}
 	
 	public Scanner getScanner()
