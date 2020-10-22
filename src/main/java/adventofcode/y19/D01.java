@@ -7,7 +7,7 @@ import adventofcode.FileReader;
 
 /**
  * 
- * @author tba
+ * @author tobitherobot
  *
  */
 public class D01 implements Day
