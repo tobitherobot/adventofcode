@@ -5,11 +5,6 @@ import java.util.List;
 import adventofcode.Day;
 import adventofcode.FileReader;
 
-/**
- * 
- * @author tobitherobot
- *
- */
 public class D01 implements Day
 {
 	public Object star1() 

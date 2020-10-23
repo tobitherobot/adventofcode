@@ -167,7 +167,7 @@ public class Intcode
 	}
 	
 	/**
-	 * manually change an int in the code
+	 * manually change an element in the code
 	 * @param index index
 	 * @param element value
 	 */
@@ -177,7 +177,7 @@ public class Intcode
 	}
 	
 	/**
-	 * manually get an int in the code
+	 * manually get an element in the code
 	 * @param index index
 	 * @return current value at index
 	 */
@@ -187,8 +187,8 @@ public class Intcode
 	}
 	
 	/**
-	 * set another intcode machine to output values to
-	 * @param n intcode
+	 * connect another intcode machine to output values to
+	 * @param n intcode machine
 	 */
 	public void addNext(Intcode n)
 	{
@@ -206,7 +206,7 @@ public class Intcode
 	
 	/**
 	 * add input for multiple connected intcode machines
-	 * @param p string of single-digit inputs, one digit per machine
+	 * @param p string of single digit inputs, one digit per machine
 	 */
 	public void setPhase(String p)
 	{
@@ -263,6 +263,10 @@ public class Intcode
 		return code.get(ptr)==99;
 	}
 	
+	/**
+	 * returns if the intcode machine is in its initial state
+	 * @return is reset
+	 */
 	public boolean isReset()
 	{
 		return code.equals(original) && !isFinished() && ptr==0;

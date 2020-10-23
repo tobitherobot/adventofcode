@@ -2,6 +2,11 @@ package adventofcode.util;
 
 public class MathUtil 
 {
+	/**
+	 * generate the next permutation of a string
+	 * @param sb stringbuilder
+	 * @return was successful
+	 */
 	public static boolean nextPermutation(StringBuilder sb) 
 	{
 		int l = sb.length();
