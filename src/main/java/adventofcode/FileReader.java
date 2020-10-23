@@ -34,10 +34,29 @@ public class FileReader
 	}
 	
 	/**
-	 * returns list of ints
-	 * @return list of ints
+	 * reads line as string
+	 * @return string
+	 * 
+	 * <pre>
+	 * "abcdef"
+	 * </pre>
 	 */
-	public List<Integer> getIntList()
+	public String readLine()
+	{
+		return sc.nextLine();
+	}
+	
+	/**
+	 * reads all lines for numbers
+	 * @return list of ints
+	 * 
+	 * <pre> 
+	 * List<0 1 
+	 *      2 3
+	 *      4>
+	 * </pre>
+	 */
+	public List<Integer> readIntList()
 	{
 		List<Integer> ints = new ArrayList<>();
 		while (sc.hasNextInt()) ints.add(sc.nextInt());
@@ -46,11 +65,15 @@ public class FileReader
 	}
 	
 	/**
-	 * returns split string as list of ints
+	 * reads seperated string as split line of ints
 	 * @param s regex
 	 * @return list of ints
+	 * 
+	 * <pre>
+	 * List<0,1,2,3,4>
+	 * </pre>
 	 */
-	public List<Integer> getIntListSplit(String s)
+	public List<Integer> readIntListSplit(String s)
 	{
 		return Arrays.stream(sc.next().split(s))
 				.map(Integer::parseInt)
@@ -61,8 +84,13 @@ public class FileReader
 	 * returns split arrays of strings as list
 	 * @param s regex
 	 * @return list of string arrays
+	 * 
+	 * <pre>
+	 * List<String[]{0,1,2,3,4},
+	 *      String[]{5,6,7,8,9}>
+	 * </pre>
 	 */
-	public List<String[]> getStringListSplitArray(String s)
+	public List<String[]> readStringListSplitArray(String s)
 	{
 		List<String[]> strings = new ArrayList<>();
 		while (sc.hasNext()) strings.add(sc.next().split(s));
@@ -70,7 +98,11 @@ public class FileReader
 		return strings;
 	}
 	
-	public Scanner getScanner()
+	/**
+	 * 
+	 * @return
+	 */
+	public Scanner getSacanner()
 	{
 		return sc;
 	}

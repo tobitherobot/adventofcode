@@ -14,7 +14,7 @@ public class D06 implements Day
 {
 	public Object star1() 
 	{
-		List<String[]> input = new FileReader(6,19).getStringListSplitArray("\\)");
+		List<String[]> input = new FileReader(6,19).readStringListSplitArray("\\)");
 		Node root = createRoot(input);
 		
 		return root.countOrbits(0);
@@ -22,7 +22,7 @@ public class D06 implements Day
 
 	public Object star2() 
 	{
-		List<String[]> input = new FileReader(6,19).getStringListSplitArray("\\)");
+		List<String[]> input = new FileReader(6,19).readStringListSplitArray("\\)");
 		Node root = createRoot(input);
 		
 		return root.getDistance("YOU", "SAN");

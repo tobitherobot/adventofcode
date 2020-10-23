@@ -15,7 +15,7 @@ public class D03 implements Day
 {
 	public Object star1() 
 	{
-		List<String[]> input = new FileReader(3, 19).getStringListSplitArray(",");
+		List<String[]> input = new FileReader(3, 19).readStringListSplitArray(",");
 		List<Point> wireA = getWire(input.get(0));
 		List<Point> wireB = getWire(input.get(1));
 		long res = Integer.MAX_VALUE;
@@ -36,7 +36,7 @@ public class D03 implements Day
 
 	public Object star2() 
 	{
-		List<String[]> input = new FileReader(3, 19).getStringListSplitArray(",");
+		List<String[]> input = new FileReader(3, 19).readStringListSplitArray(",");
 		List<Point> wireA = getWire(input.get(0));
 		List<Point> wireB = getWire(input.get(1));
 		Set<Point> cross = new HashSet<>();

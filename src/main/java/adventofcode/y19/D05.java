@@ -10,7 +10,7 @@ public class D05 implements Day
 {
 	public Object star1() 
 	{
-		List<Integer> code = new FileReader(5,19).getIntListSplit(",");
+		List<Integer> code = new FileReader(5,19).readIntListSplit(",");
 		Intcode intcode = new Intcode(code);
 		
 		intcode.addInput(1);
@@ -21,7 +21,7 @@ public class D05 implements Day
 
 	public Object star2() 
 	{
-		List<Integer> code = new FileReader(5,19).getIntListSplit(",");
+		List<Integer> code = new FileReader(5,19).readIntListSplit(",");
 		Intcode intcode = new Intcode(code);
 		
 		intcode.addInput(5);
