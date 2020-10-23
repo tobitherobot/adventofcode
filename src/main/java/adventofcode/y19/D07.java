@@ -11,9 +11,9 @@ public class D07 implements Day
 {
 	public Object star1()
 	{
-		List<Integer> code = new FileReader(7,19).readIntListSplit(",");
+		List<Long> code = new FileReader(7,19).readLongListSplit(",");
 		Intcode root = getMachines(code);
-		int maxSignal = -1;
+		long maxSignal = -1;
 
 		StringBuilder phase = new StringBuilder("01234");
 		
@@ -23,7 +23,7 @@ public class D07 implements Day
 			root.addInput(0);
 			
 			root.run();
-			int signal = root.getNext().getNext().getNext().getNext().getLastOutput();
+			long signal = root.getNext().getNext().getNext().getNext().getLastOutput();
 			maxSignal = Math.max(maxSignal, signal);
 			root.reset();
 		}
@@ -34,9 +34,9 @@ public class D07 implements Day
 
 	public Object star2()
 	{
-		List<Integer> code = new FileReader(7,19).readIntListSplit(",");
+		List<Long> code = new FileReader(7,19).readLongListSplit(",");
 		Intcode root = getMachines(code);
-		int maxSignal = -1;
+		long maxSignal = -1;
 		
 		StringBuilder phase = new StringBuilder("56789");
 		root.getNext().getNext().getNext().getNext().addNext(root);
@@ -47,7 +47,7 @@ public class D07 implements Day
 			root.addInput(0);
 			
 			root.run();
-			int signal = root.getNext().getNext().getNext().getNext().getLastOutput();
+			long signal = root.getNext().getNext().getNext().getNext().getLastOutput();
 			maxSignal = Math.max(maxSignal, signal);
 			root.reset();
 		}
@@ -61,7 +61,7 @@ public class D07 implements Day
 	 * @param code intcode
 	 * @return root intcode machine
 	 */
-	private Intcode getMachines(List<Integer> code)
+	private Intcode getMachines(List<Long> code)
 	{
 		Intcode root = new Intcode(code);
 		

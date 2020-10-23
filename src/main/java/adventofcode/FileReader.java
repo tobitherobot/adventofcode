@@ -65,18 +65,18 @@ public class FileReader
 	}
 	
 	/**
-	 * reads seperated string as split line of ints
+	 * reads seperated string as split line of longs
 	 * @param s regex
-	 * @return list of ints
+	 * @return list of longs
 	 * 
 	 * <pre>
-	 * List<0,1,2,3,4>
+	 * List<0L,1L,2L,3L,4L>
 	 * </pre>
 	 */
-	public List<Integer> readIntListSplit(String s)
+	public List<Long> readLongListSplit(String s)
 	{
 		return Arrays.stream(sc.next().split(s))
-				.map(Integer::parseInt)
+				.map(Long::parseLong)
 				.collect(Collectors.toList());
 	}
 	
