@@ -13,15 +13,20 @@ public class D09 implements Day
 		List<Long> code = new FileReader(9,19).readLongListSplit(",");
 		Intcode intcode = new Intcode(code);
 		
-		intcode.addInput(1L);
-		intcode.debug();
+		intcode.addInput(1);
+		intcode.run();
 		
 		return intcode.getLastOutput();
 	}
 
 	public Object star2() 
 	{
+		List<Long> code = new FileReader(9,19).readLongListSplit(",");
+		Intcode intcode = new Intcode(code);
 		
-		return null;
+		intcode.addInput(2);
+		intcode.run();
+		
+		return intcode.getLastOutput();
 	}
 }

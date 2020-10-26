@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.stream.Collectors;
 
 public class Intcode 
 {
@@ -45,70 +46,66 @@ public class Intcode
 	 */
 	public void step()
 	{
-		long opcode = get(ptr);
-		int[] modes = new int[] {
-				Math.toIntExact(opcode%100), 
-				Math.toIntExact(opcode/100%10),
-				Math.toIntExact(opcode/1000%10),
-				Math.toIntExact(opcode/10000)};
+		int opcode = Math.toIntExact(get(ptr));
+		int[] modes = new int[] {opcode%100, opcode/100%10, opcode/1000%10, opcode/10000};
 
 		try
 		{
 			switch (modes[0])
 			{
 				case 1: // add: param1+param2 at param3
-					set(get(ptr+3), getValue(ptr+1, modes[1]) + getValue(ptr+2, modes[2]));
+					set(ptr+3, modes[3], get(ptr+1, modes[1]) + get(ptr+2, modes[2]));
 					ptr += 4;
 					break;
 				case 2: // mul: param1*param2 at param3
-					set(get(ptr+3), getValue(ptr+1, modes[1]) * getValue(ptr+2, modes[2]));
+					set(ptr+3, modes[3], get(ptr+1, modes[1]) * get(ptr+2, modes[2]));
 					ptr += 4;
 					break;
 				case 3: // in: save input in param1
 					if (!input.isEmpty()) {
-						set(get(ptr+1), input.poll());
+						set(ptr+1, modes[1], input.poll());
 						isPaused = false;
 						ptr += 2;
 					}
 					else isPaused = true;
 					break;
 				case 4: // out: output param1
-					long o = getValue(ptr+1, modes[1]);
+					long x = get(ptr+1, modes[1]);
 					if (next!=null) {
-						next.addInput(o);
+						next.addInput(Math.toIntExact(x));
 					}
-					lastOutput = o;
-					System.out.println(lastOutput);
+					lastOutput = x;
+					// System.out.println(lastOutput);
 					ptr += 2;
 					break;
 				case 5: // jit: if param1 is not 0, set ptr to param2
-					if (getValue(ptr+1, modes[1])!=0) {
-						ptr = Math.toIntExact(getValue(ptr+2, modes[2]));
+					if (get(ptr+1, modes[1])!=0) {
+						ptr = Math.toIntExact(get(ptr+2, modes[2]));
 					}
 					else ptr += 3;
 					break;
 				case 6: // jif: if param1 is 0, set ptr to param2
-					if (getValue(ptr+1, modes[1])==0) {
-						ptr = Math.toIntExact(getValue(ptr+2, modes[2]));
+					if (get(ptr+1, modes[1])==0) {
+						ptr = Math.toIntExact(get(ptr+2, modes[2]));
 					}
 					else ptr += 3;
 					break;
 				case 7: // lt: if param1 less than param2, it stores 1 in param3 (otherwise 0)
-					if (getValue(ptr+1, modes[1]) < getValue(ptr+2, modes[2])) {
-						set(get(ptr+3), 1);
+					if (get(ptr+1, modes[1]) < get(ptr+2, modes[2])) {
+						set(ptr+3, modes[3], 1);
 					}
-					else set(get(ptr+3), 0);
+					else set(ptr+3, modes[3], 0);
 					ptr += 4;
 					break;
 				case 8: // eq: if param1 equals param2, it stores 1 in param3 (otherwise 0)
-					if (getValue(ptr+1, modes[1]) == getValue(ptr+2, modes[2])) {
-						set(get(ptr+3), 1);
+					if (get(ptr+1, modes[1]) == get(ptr+2, modes[2])) {
+						set(ptr+3, modes[3], 1);
 					}
-					else set(get(ptr+3), 0);
+					else set(ptr+3, modes[3], 0);
 					ptr += 4;
 					break;
 				case 9: // adj: adjust relative base by param1
-					relBase += getValue(ptr+1, modes[1]);
+					relBase += get(ptr+1, modes[1]);
 					ptr += 2;
 					break;
 				case 99: // end: end program
@@ -117,30 +114,53 @@ public class Intcode
 					throw new NullPointerException("Opcode "+modes[0]+" not found!");
 			}
 		}
-		catch (Exception e)
+		catch (ArrayIndexOutOfBoundsException e)
 		{
 			e.printStackTrace();
 		}
 	}
 	
 	/**
-	 * convert the parameter with its mode to its value
+	 * convert the get-parameter with its mode to its value
 	 * @param value initial value
 	 * @param mode parameter mode
 	 * @return converted value
 	 */
-	private long getValue(int value, int mode) // -1 2, rlBase: 1
+	private long get(long value, int mode)
 	{
 		switch (mode) 
 		{
-		case 0: // position mode
-			return get(get(value));
-		case 1: // immediate mode
-			return get(value);
-		case 2: // relative mode
-			return get(relBase+get(value));
-		default:
-			return Long.MIN_VALUE;
+			case 0: // position mode
+				return get(get(value));
+			case 1: // immediate mode
+				return get(value);
+			case 2: // relative mode
+				return get(get(value)+relBase);
+			default:
+				return Long.MIN_VALUE;
+		}
+	}
+	
+	/**
+	 * convert the set-parameter with its mode to its value
+	 * @param idx initial index
+	 * @param mode parameter mode
+	 * @param value value to store
+	 * @return converted value
+	 */
+	private void set(long idx, int mode, long value)
+	{
+		switch (mode) 
+		{
+			case 0: // position mode
+				set(get(idx), value);
+				break;
+			case 1: // immediate mode
+				set(idx, value);
+				break;
+			case 2: // relative mode
+				set(get(idx)+relBase, value);
+				break;
 		}
 	}
 	
@@ -193,18 +213,18 @@ public class Intcode
 	}
 	
 	/**
-	 * manually change an element in the code
+	 * manually change a value in the code
 	 * @param idx index
-	 * @param elm value
+	 * @param v new value
 	 */
-	public void set(long idx, long elm)
+	public void set(long idx, long v)
 	{
-		if (idx<code.size()) code.set(Math.toIntExact(idx), elm);
-		else memory.put(idx, elm);
+		if (idx<code.size()) code.set(Math.toIntExact(idx), v);
+		else memory.put(idx, v);
 	}
 	
 	/**
-	 * manually get an element in the code
+	 * manually get a value in the code
 	 * @param idx index
 	 * @return current value at index
 	 */
@@ -238,28 +258,28 @@ public class Intcode
 	}
 	
 	/**
-	 * add input for multiple connected intcode machines
-	 * @param p string of single digit inputs, one digit per machine
-	 */
-	public void setPhase(String p)
-	{
-		if (!p.isEmpty())
-		{
-			addInput(Character.getNumericValue(p.charAt(0)));
-			
-			if (next!=null) {
-				next.setPhase(p.substring(1));
-			}
-		}
-	}
-	
-	/**
 	 * add an input
 	 * @param n value
 	 */
 	public void addInput(long n)
 	{
 		input.add(n);
+	}
+	
+	/**
+	 * add inputs for multiple connected intcode machines
+	 * @param p string of single digit inputs, one digit per machine
+	 */
+	public void addInputs(String p)
+	{
+		if (!p.isEmpty())
+		{
+			addInput(Character.getNumericValue(p.charAt(0)));
+			
+			if (next!=null) {
+				next.addInputs(p.substring(1));
+			}
+		}
 	}
 	
 	/**
@@ -307,8 +327,41 @@ public class Intcode
 		return code.equals(original) && !isFinished() && ptr==0;
 	}
 	
-	public String toString()
+	/**
+	 * get the intcode machine's extra memory
+	 * @return extra memory hashmap
+	 */
+	public Map<Long,Long> getMemory()
 	{
-		return code + " " + memory;
+		return memory;
+	}
+	
+	/**
+	 * manually set the code
+	 * @param c code
+	 */
+	public void setCode(List<Long> c)
+	{
+		original = c;
+		reset();
+	}
+	
+	/**
+	 * nicely returns the relative base, the current code and pointer position and the extra memory
+	 */
+	public String toString()
+	{		
+		StringBuilder sb = new StringBuilder(String.join(" ", code.stream()
+				.map(String::valueOf)
+				.collect(Collectors.toList())) + " ");
+		int idx = -1;
+		
+		for (int i = 0; i < ptr; i++) {
+			idx = sb.indexOf(" ", idx+1);
+		}
+		sb.insert(idx+1, ">");
+		sb.insert(sb.indexOf(" ", idx+1), "<");
+		
+		return "("+relBase+")\t" + sb.toString() + memory;
 	}
 }

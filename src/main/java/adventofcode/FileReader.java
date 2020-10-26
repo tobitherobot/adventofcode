@@ -19,6 +19,11 @@ public class FileReader
 		load(d, y);
 	}
 	
+	public FileReader()
+	{
+		
+	}
+	
 	public void load(int d, int y)
 	{
 		try
@@ -74,7 +79,7 @@ public class FileReader
 	 * </pre>
 	 */
 	public List<Long> readLongListSplit(String s)
-	{
+	{	
 		return Arrays.stream(sc.next().split(s))
 				.map(Long::parseLong)
 				.collect(Collectors.toList());
@@ -99,10 +104,44 @@ public class FileReader
 	}
 	
 	/**
+	 * reads a character matrix
+	 * @return matrix
 	 * 
-	 * @return
+	 * <pre>
+	 * [['.','#'],
+	 *  ['#','.']]
+	 * </pre>
 	 */
-	public Scanner getSacanner()
+	public char[][] readCharMatrix()
+	{
+		List<String> strings = new ArrayList<>();
+		
+		while (sc.hasNext()) {
+			strings.add(sc.next());
+		}
+		
+		char[][] m = new char[strings.size()][];
+		
+		for (int i = 0; i < m.length; i++) {
+			m[i] = strings.get(i).toCharArray();
+		}		
+		return m;
+	}
+	
+	/**
+	 * manually set the input
+	 * @param s input string
+	 */
+	public void setInput(String s)
+	{
+		sc = new Scanner(s);
+	}
+	
+	/**
+	 * get scanner
+	 * @return scanner
+	 */
+	public Scanner getScanner()
 	{
 		return sc;
 	}

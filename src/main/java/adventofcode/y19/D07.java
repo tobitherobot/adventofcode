@@ -19,7 +19,7 @@ public class D07 implements Day
 		
 		do
 		{
-			root.setPhase(phase.toString());
+			root.addInputs(phase.toString());
 			root.addInput(0);
 			
 			root.run();
@@ -43,7 +43,7 @@ public class D07 implements Day
 		
 		do
 		{
-			root.setPhase(phase.toString());
+			root.addInputs(phase.toString());
 			root.addInput(0);
 			
 			root.run();

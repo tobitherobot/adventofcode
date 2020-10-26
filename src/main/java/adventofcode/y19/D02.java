@@ -15,7 +15,7 @@ public class D02 implements Day
 		
 		intcode.set(1, 12);
 		intcode.set(2, 2);
-		intcode.run();
+		intcode.debug();
 		
 		return intcode.get(0);
 	}
