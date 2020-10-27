@@ -1,5 +1,5 @@
 # adventofcode
-My [Advent of Code](adventofcode.com) solutions in Java
+My [Advent of Code](https://adventofcode.com) solutions in Java
 
 #### Year 2019
 
