@@ -3,6 +3,17 @@ package adventofcode.util;
 public class MathUtil 
 {
 	/**
+	 * returns the greatest common divisor of a and b
+	 * @param a
+	 * @param b
+	 * @return gcd
+	 */
+	public static int gcd(int a, int b) 
+	{
+	  return a==0 ? b : gcd(b%a, a);
+	}
+	
+	/**
 	 * generate the next permutation of a string
 	 * @param sb stringbuilder
 	 * @return was successful
