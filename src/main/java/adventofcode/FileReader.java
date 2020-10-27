@@ -1,5 +1,6 @@
 package adventofcode;
 
+import java.awt.Point;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -126,6 +127,36 @@ public class FileReader
 			m[i] = strings.get(i).toCharArray();
 		}		
 		return m;
+	}
+	
+	/**
+	 * read a list of 2d points
+	 * @param ch character that represents a point
+	 * @return list of points
+	 * 
+	 * <pre>
+	 * List<Point(0,1),
+	 *  	Point(1,0)>
+	 * </pre>
+	 */
+	public List<Point> readPoints(char ch)
+	{
+		List<Point> points = new ArrayList<>();
+		int row = 0;
+		
+		while (sc.hasNext()) 
+		{
+			String s = sc.next();
+
+			for (int i = 0; i < s.length(); i++) 
+			{
+				if (s.charAt(i)==ch) {
+					points.add(new Point(row, i));
+				}
+			}
+			row++;
+		}
+		return points;
 	}
 	
 	/**
