@@ -18,6 +18,7 @@ public class Intcode
 	
 	private Intcode next;
 	private Queue<Long> input;
+	private Queue<Long> output;
 	private long lastOutput;
 	
 	private Map<Long, Long> memory;
@@ -34,6 +35,7 @@ public class Intcode
 		
 		next = null;
 		input = new LinkedList<>();
+		output = new LinkedList<>();
 		lastOutput = -1;
 		
 		memory = new HashMap<>();
@@ -70,12 +72,11 @@ public class Intcode
 					else isPaused = true;
 					break;
 				case 4: // out: output param1
-					long x = get(ptr+1, modes[1]);
+					lastOutput = get(ptr+1, modes[1]);
 					if (next!=null) {
-						next.addInput(Math.toIntExact(x));
+						next.addInput(Math.toIntExact(lastOutput));
 					}
-					lastOutput = x;
-					// System.out.println(lastOutput);
+					output.add(lastOutput);
 					ptr += 2;
 					break;
 				case 5: // jit: if param1 is not 0, set ptr to param2
@@ -283,6 +284,15 @@ public class Intcode
 	}
 	
 	/**
+	 * queue of previous outputs
+	 * @return next output
+	 */
+	public long getOutput()
+	{
+		return output.poll();
+	}
+	
+	/**
 	 * get latest output of that intcode machine
 	 * @return last output
 	 */
@@ -300,8 +310,10 @@ public class Intcode
 		ptr = 0;
 		relBase = 0;
 		
-		lastOutput = -1;
 		input.clear();
+		output.clear();
+		lastOutput = -1;
+		
 		isPaused = false;
 		
 		memory = new HashMap<>();
