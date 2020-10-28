@@ -15,17 +15,12 @@ public class FileReader
 	private InputStream is = null;
 	private Scanner sc = null;
 	
+	/**
+	 * set the input for specific day
+	 * @param d day
+	 * @param y year
+	 */
 	public FileReader(int d, int y)
-	{
-		load(d, y);
-	}
-	
-	public FileReader()
-	{
-		
-	}
-	
-	public void load(int d, int y)
 	{
 		try
 		{
@@ -37,6 +32,15 @@ public class FileReader
 		{
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * set an input string
+	 * @param s input string
+	 */
+	public FileReader(String s)
+	{
+		sc = new Scanner(s);
 	}
 	
 	/**
@@ -157,15 +161,6 @@ public class FileReader
 			row++;
 		}
 		return points;
-	}
-	
-	/**
-	 * manually set the input
-	 * @param s input string
-	 */
-	public void setInput(String s)
-	{
-		sc = new Scanner(s);
 	}
 	
 	/**

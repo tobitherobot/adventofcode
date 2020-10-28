@@ -42,6 +42,6 @@ public class D08 implements Day
 				else img[j][k] = null;
 			}
 		}
-		return "\n"+InputPrinter.print(img);
+		return InputPrinter.print(img);
 	}
 }
