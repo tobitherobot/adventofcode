@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import adventofcode.Day;
-import adventofcode.FileReader;
+import adventofcode.InputReader;
 import adventofcode.util.MathUtil;
 
 public class D10 implements Day
@@ -17,7 +17,7 @@ public class D10 implements Day
 	
 	public Object star1() 
 	{
-		List<Point> asteroids = new FileReader(10,19).readPoints('#');
+		List<Point> asteroids = new InputReader(10,19).readPoints('#');
 		Map<Point, Integer> counts = new HashMap<>();
 		
 		for (Point asteroid : asteroids) {
@@ -46,7 +46,7 @@ public class D10 implements Day
 
 	public Object star2() 
 	{
-		List<Point> asteroids = new FileReader(10,19).readPoints('#');
+		List<Point> asteroids = new InputReader(10,19).readPoints('#');
 		Map<Float, Point> values = new TreeMap<>();
 		asteroids.remove(laser);
 		

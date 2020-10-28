@@ -1,14 +1,14 @@
 package adventofcode.y19;
 
 import adventofcode.Day;
-import adventofcode.FileReader;
+import adventofcode.InputReader;
 import adventofcode.InputPrinter;
 
 public class D08 implements Day
 {
 	public Object star1() 
 	{
-		String s = new FileReader(8,19).readLine();
+		String s = new InputReader(8,19).readLine();
 		long min = Long.MAX_VALUE;
 		long sum = -1;
 		
@@ -28,7 +28,7 @@ public class D08 implements Day
 
 	public Object star2() 
 	{
-		String s = new FileReader(8,19).readLine();
+		String s = new InputReader(8,19).readLine();
 		Boolean[][] img = new Boolean[6][25];
 		
 		for (int j = 0; j < 6; j++) {

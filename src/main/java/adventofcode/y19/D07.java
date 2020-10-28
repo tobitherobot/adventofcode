@@ -3,7 +3,7 @@ package adventofcode.y19;
 import java.util.List;
 
 import adventofcode.Day;
-import adventofcode.FileReader;
+import adventofcode.InputReader;
 import adventofcode.util.MathUtil;
 import adventofcode.y19.obj.Intcode;
 
@@ -11,7 +11,7 @@ public class D07 implements Day
 {
 	public Object star1()
 	{
-		List<Long> code = new FileReader(7,19).readLongListSplit(",");
+		List<Long> code = new InputReader(7,19).readLongListSplit(",");
 		Intcode root = getMachines(code);
 		long maxSignal = -1;
 
@@ -34,7 +34,7 @@ public class D07 implements Day
 
 	public Object star2()
 	{
-		List<Long> code = new FileReader(7,19).readLongListSplit(",");
+		List<Long> code = new InputReader(7,19).readLongListSplit(",");
 		Intcode root = getMachines(code);
 		long maxSignal = -1;
 		
