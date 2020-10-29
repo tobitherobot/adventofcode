@@ -3,30 +3,27 @@ package adventofcode;
 import java.awt.Point;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class FileReader 
+public class InputReader 
 {
-	private InputStream is = null;
 	private Scanner sc = null;
 	
 	/**
-	 * set the input for specific day
+	 * set the input for a specific day
 	 * @param d day
 	 * @param y year
 	 */
-	public FileReader(int d, int y)
+	public InputReader(int d, int y)
 	{
 		try
 		{
 			File file = new File("src/main/resources/y"+y+"/D"+String.format("%02d", d)+".txt");
-			is = new FileInputStream(file);
-			sc = new Scanner(is);
+			sc = new Scanner(new FileInputStream(file));
 		}
 		catch (Exception e)
 		{
@@ -38,7 +35,7 @@ public class FileReader
 	 * set an input string
 	 * @param s input string
 	 */
-	public FileReader(String s)
+	public InputReader(String s)
 	{
 		sc = new Scanner(s);
 	}

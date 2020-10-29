@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import adventofcode.Day;
-import adventofcode.FileReader;
+import adventofcode.InputReader;
 import adventofcode.InputPrinter;
 import adventofcode.y19.obj.Intcode;
 
@@ -15,7 +15,7 @@ public class D11 implements Day
 {
 	public Object star1() 
 	{
-		List<Long> code = new FileReader(11,19).readLongListSplit(",");
+		List<Long> code = new InputReader(11,19).readLongListSplit(",");
 		Intcode intcode = new Intcode(code);
 		
 		Map<Point, Long> colors = paint(intcode, new HashMap<>());		
@@ -24,7 +24,7 @@ public class D11 implements Day
 
 	public Object star2() 
 	{
-		List<Long> code = new FileReader(11,19).readLongListSplit(",");
+		List<Long> code = new InputReader(11,19).readLongListSplit(",");
 		Intcode intcode = new Intcode(code);
 		
 		Map<Point, Long> colors = new HashMap<>();		

@@ -3,13 +3,13 @@ package adventofcode.y19;
 import java.util.List;
 
 import adventofcode.Day;
-import adventofcode.FileReader;
+import adventofcode.InputReader;
 
 public class D01 implements Day
 {
 	public Object star1() 
 	{
-		List<Integer> modules = new FileReader(1,19).readIntList();
+		List<Integer> modules = new InputReader(1,19).readIntList();
 		long sum = 0L;
 		
 		for (int module : modules) {
@@ -20,7 +20,7 @@ public class D01 implements Day
 
 	public Object star2() 
 	{
-		List<Integer> modules = new FileReader(1,19).readIntList();
+		List<Integer> modules = new InputReader(1,19).readIntList();
 		long sum = 0L;
 		
 		for (int module : modules) {
