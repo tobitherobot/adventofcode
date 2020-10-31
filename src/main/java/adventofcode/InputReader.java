@@ -41,12 +41,8 @@ public class InputReader
 	}
 	
 	/**
-	 * reads line as string
+	 * reads a single line as string
 	 * @return string
-	 * 
-	 * <pre>
-	 * "abcdef"
-	 * </pre>
 	 */
 	public String readLine()
 	{
@@ -54,65 +50,87 @@ public class InputReader
 	}
 	
 	/**
-	 * reads all lines for numbers
-	 * @return list of ints
-	 * 
-	 * <pre> 
-	 * List<0 1 
-	 *      2 3
-	 *      4>
-	 * </pre>
+	 * read all lines as list of strings
+	 * @return list of strings
 	 */
-	public List<Integer> readIntList()
+	public List<String> readLines()
 	{
-		List<Integer> ints = new ArrayList<>();
-		while (sc.hasNextInt()) ints.add(sc.nextInt());
+		List<String> lines = new ArrayList<>();
 		
-		return ints;
+		while (sc.hasNextLine()) {
+			lines.add(sc.nextLine());
+		}
+		return lines;
 	}
 	
 	/**
-	 * reads seperated string as split line of longs
+	 * read a single line split as string array
 	 * @param s regex
-	 * @return list of longs
-	 * 
-	 * <pre>
-	 * List<0L,1L,2L,3L,4L>
-	 * </pre>
+	 * @return string array
 	 */
-	public List<Long> readLongListSplit(String s)
-	{	
-		return Arrays.stream(sc.next().split(s))
-				.map(Long::parseLong)
-				.collect(Collectors.toList());
+	public String[] readLineSplit(String s)
+	{
+		return sc.nextLine().split(s);
 	}
 	
 	/**
-	 * returns split arrays of strings as list
+	 * read all lines split as list of string arrays
 	 * @param s regex
 	 * @return list of string arrays
-	 * 
-	 * <pre>
-	 * List<String[]{0,1,2,3,4},
-	 *      String[]{5,6,7,8,9}>
-	 * </pre>
 	 */
-	public List<String[]> readStringListSplitArray(String s)
+	public List<String[]> readLinesSplit(String s)
 	{
-		List<String[]> strings = new ArrayList<>();
-		while (sc.hasNext()) strings.add(sc.next().split(s));
+		List<String[]> lines = new ArrayList<>();
 		
+		while (sc.hasNextLine()) {
+			lines.add(sc.nextLine().split(s));
+		}
+		return lines;
+	}
+	
+	/**
+	 * reads all words as list of strings
+	 * @return list of strings
+	 */
+	public List<String> readStringList()
+	{
+		List<String> strings = new ArrayList<>();
+		
+		while (sc.hasNext()) {
+			strings.add(sc.next());
+		}		
 		return strings;
 	}
 	
 	/**
-	 * reads a character matrix
-	 * @return matrix
-	 * 
-	 * <pre>
-	 * [['.','#'],
-	 *  ['#','.']]
-	 * </pre>
+	 * reads all numbers as list of ints
+	 * @return list of ints
+	 */
+	public List<Integer> readIntList()
+	{
+		List<Integer> ints = new ArrayList<>();
+		
+		while (sc.hasNextInt()) {
+			ints.add(sc.nextInt());
+		}		
+		return ints;
+	}
+	
+	/**
+	 * read a single line split as list of longs
+	 * @param s regex
+	 * @return list of longs
+	 */
+	public List<Long> readLongLineSplit(String s)
+	{	
+		return Arrays.stream(readLineSplit(s))
+				.map(Long::parseLong)
+				.collect(Collectors.toList());
+	}
+		
+	/**
+	 * reads all lines as char matrix
+	 * @return char matrix
 	 */
 	public char[][] readCharMatrix()
 	{
@@ -121,7 +139,6 @@ public class InputReader
 		while (sc.hasNext()) {
 			strings.add(sc.next());
 		}
-		
 		char[][] m = new char[strings.size()][];
 		
 		for (int i = 0; i < m.length; i++) {
@@ -131,14 +148,9 @@ public class InputReader
 	}
 	
 	/**
-	 * read a list of 2d points
+	 * read a char matrix as list of points
 	 * @param ch character that represents a point
 	 * @return list of points
-	 * 
-	 * <pre>
-	 * List<Point(0,1),
-	 *  	Point(1,0)>
-	 * </pre>
 	 */
 	public List<Point> readPoints(char ch)
 	{

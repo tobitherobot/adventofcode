@@ -11,7 +11,7 @@ public class D07 implements Day
 {
 	public Object star1()
 	{
-		List<Long> code = new InputReader(7,19).readLongListSplit(",");
+		List<Long> code = new InputReader(7,19).readLongLineSplit(",");
 		Intcode root = getMachines(code);
 		long maxSignal = -1;
 
@@ -34,7 +34,7 @@ public class D07 implements Day
 
 	public Object star2()
 	{
-		List<Long> code = new InputReader(7,19).readLongListSplit(",");
+		List<Long> code = new InputReader(7,19).readLongLineSplit(",");
 		Intcode root = getMachines(code);
 		long maxSignal = -1;
 		
