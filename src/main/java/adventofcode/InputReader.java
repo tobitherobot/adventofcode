@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+import adventofcode.util.Point3D;
+
 public class InputReader 
 {
 	private Scanner sc = null;
@@ -156,6 +158,22 @@ public class InputReader
 				}
 			}
 			row++;
+		}
+		return points;
+	}
+	
+	public List<Point3D> read3DPoints()
+	{
+		List<Point3D> points = new ArrayList<>();
+		
+		while (sc.hasNext()) 
+		{
+			String[] s = sc.nextLine().replaceAll("[^\\d.]", " ")
+					.replaceAll("\\s+", " ")
+					.trim()
+					.split(" ");
+
+			points.add(new Point3D(Integer.parseInt(s[0]), Integer.parseInt(s[1]), Integer.parseInt(s[2])));
 		}
 		return points;
 	}
