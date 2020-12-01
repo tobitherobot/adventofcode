@@ -15,7 +15,7 @@ public class D11 implements Day
 {
 	public Object star1() 
 	{
-		List<Long> code = new InputReader(11,19).readLongListSplit(",");
+		List<Long> code = new InputReader(11,19).readLongLineSplit(",");
 		Intcode intcode = new Intcode(code);
 		
 		Map<Point, Long> colors = paint(intcode, new HashMap<>());		
@@ -24,7 +24,7 @@ public class D11 implements Day
 
 	public Object star2() 
 	{
-		List<Long> code = new InputReader(11,19).readLongListSplit(",");
+		List<Long> code = new InputReader(11,19).readLongLineSplit(",");
 		Intcode intcode = new Intcode(code);
 		
 		Map<Point, Long> colors = new HashMap<>();		

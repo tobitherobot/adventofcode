@@ -10,7 +10,7 @@ public class D09 implements Day
 {
 	public Object star1() 
 	{
-		List<Long> code = new InputReader(9,19).readLongListSplit(",");
+		List<Long> code = new InputReader(9,19).readLongLineSplit(",");
 		Intcode intcode = new Intcode(code);
 		
 		intcode.addInput(1);
@@ -21,7 +21,7 @@ public class D09 implements Day
 
 	public Object star2() 
 	{
-		List<Long> code = new InputReader(9,19).readLongListSplit(",");
+		List<Long> code = new InputReader(9,19).readLongLineSplit(",");
 		Intcode intcode = new Intcode(code);
 		
 		intcode.addInput(2);
