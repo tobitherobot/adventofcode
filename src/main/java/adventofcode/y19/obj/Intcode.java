@@ -284,8 +284,8 @@ public class Intcode
 	}
 	
 	/**
-	 * queue of previous outputs
-	 * @return next output
+	 * get latest output
+	 * @return latest output
 	 */
 	public long getOutput()
 	{
@@ -299,6 +299,15 @@ public class Intcode
 	public long getLastOutput()
 	{
 		return lastOutput;
+	}
+	
+	/**
+	 * is output queue empty
+	 * @return has output?
+	 */
+	public boolean hasOutput()
+	{
+		return !output.isEmpty();
 	}
 	
 	/**

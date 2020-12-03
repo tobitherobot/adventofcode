@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-import adventofcode.util.Point3D;
-
 public class InputReader 
 {
 	private Scanner sc = null;

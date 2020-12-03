@@ -2,9 +2,44 @@ package adventofcode;
 
 import java.awt.Point;
 import java.util.List;
+import java.util.Map;
 
 public class InputPrinter 
 {
+	/**
+	 * convert a char matrix to a string
+	 * @param matrix char matrix
+	 * @return string representation of matrix
+	 */
+	public static String print(char[][] matrix)
+	{
+		StringBuilder sb = new StringBuilder("\n");
+		
+		for (int i = 0; i < matrix.length; i++) {
+			sb.append(new String(matrix[i]) + "\n");
+		}
+		return sb.toString();
+	}
+	
+	/**
+	 * convert a point-to-char map to a string
+	 * @param map tile map
+	 * @return string representation of map
+	 */
+	public static String print(Map<Point, Character> map)
+	{
+		int maxX = map.entrySet().stream().max((e1, e2) -> e1.getKey().x > e2.getKey().x ? 1 : -1).get().getKey().x;
+		int maxY = map.entrySet().stream().max((e1, e2) -> e1.getKey().y > e2.getKey().y ? 1 : -1).get().getKey().y;
+		char[][] canvas = new char[maxY+1][maxX+1];
+		
+		for (Point p : map.keySet())
+		{
+			canvas[p.y][p.x] = map.get(p);
+		}
+		
+		return print(canvas);
+	}
+	
 	/**
 	 * convert a boolean matrix to a string
 	 * @param matrix matrix
