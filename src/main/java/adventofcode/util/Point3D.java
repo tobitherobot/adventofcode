@@ -20,6 +20,26 @@ public class Point3D
 		z += p.z;
 	}
 	
+	public void addX(int n)
+	{
+		x += n;
+	}
+	
+	public void addY(int n)
+	{
+		y += n;
+	}
+	
+	public void addZ(int n)
+	{
+		z += n;
+	}
+	
+	public boolean equals(Point3D p)
+	{
+		return x==p.x && y==p.y && z==p.z;
+	}
+	
 	public String toString()
 	{
 		return "<x="+x+", y="+y+", z="+z+">";

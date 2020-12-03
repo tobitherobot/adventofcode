@@ -174,22 +174,6 @@ public class InputReader
 		return points;
 	}
 	
-	public List<Point3D> read3DPoints()
-	{
-		List<Point3D> points = new ArrayList<>();
-		
-		while (sc.hasNext()) 
-		{
-			String[] s = sc.nextLine().replaceAll("[^\\d.]", " ")
-					.replaceAll("\\s+", " ")
-					.trim()
-					.split(" ");
-
-			points.add(new Point3D(Integer.parseInt(s[0]), Integer.parseInt(s[1]), Integer.parseInt(s[2])));
-		}
-		return points;
-	}
-	
 	/**
 	 * get scanner
 	 * @return scanner
