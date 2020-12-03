@@ -6,7 +6,7 @@ public class DayController
 	{
 		Day day = getDay(d, y);
 		
-		if (day!=null) System.out.println(day.solve());
+		if (day!=null) day.print();
 	}
 	
 	public void runYear(int y)
@@ -17,7 +17,7 @@ public class DayController
 		{
 			Day day = getDay(i, y);
 			
-			if (day!=null) System.out.println(day.time());
+			if (day!=null) day.time();
 		}
 	}
 	
