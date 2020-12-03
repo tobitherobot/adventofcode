@@ -29,6 +29,10 @@ public class D02 implements Day
 		return count;
 	}
 	
+	/**
+	 * @param policy 
+	 * @return is policy correct? (star1)
+	 */
 	private boolean checkPolicyOld(String policy)
 	{
 		String[] split = policy.split(" ");
@@ -44,6 +48,10 @@ public class D02 implements Day
 		return min<=count && count<=max;
 	}
 	
+	/**
+	 * @param policy 
+	 * @return is policy correct? (star2)
+	 */
 	private boolean checkPolicyNew(String policy)
 	{
 		String[] split = policy.split(" ");
