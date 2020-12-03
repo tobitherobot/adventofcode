@@ -5,7 +5,7 @@ My [Advent of Code](https://adventofcode.com) solutions in Java
 
 |  |  |  |  |  |
 | --- | --- | --- | --- | --- |
-| Day 1<br>:star::star: | Day 2<br>:star::star: | Day 3<br>:new_moon::new_moon: | Day 4<br>:new_moon::new_moon: | Day 5<br>:new_moon::new_moon: |
+| Day 1<br>:star::star: | Day 2<br>:star::star: | Day 3<br>:star::star: | Day 4<br>:new_moon::new_moon: | Day 5<br>:new_moon::new_moon: |
 | Day 6<br>:new_moon::new_moon: | Day 7<br>:new_moon::new_moon: | Day 8<br>:new_moon::new_moon: | Day 9<br>:new_moon::new_moon: | Day 10<br>:new_moon::new_moon: |
 | Day 11<br>:new_moon::new_moon: | Day 12<br>:new_moon::new_moon: | Day 13<br>:new_moon::new_moon: | Day 14<br>:new_moon::new_moon: | Day 15<br>:new_moon::new_moon: |
 | Day 16<br>:new_moon::new_moon: | Day 17<br>:new_moon::new_moon: | Day 18<br>:new_moon::new_moon: | Day 19<br>:new_moon::new_moon: | Day 20<br>:new_moon::new_moon: |
