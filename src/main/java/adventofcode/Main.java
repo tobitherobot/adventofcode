@@ -6,6 +6,6 @@ public class Main
 	{
 		DayController dc = new DayController();
 		
-		dc.run(13,19);
+		dc.run(4,20);
 	}
 }
