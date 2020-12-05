@@ -66,10 +66,10 @@ public class D13 implements Day
 					c = ' ';
 					break;
 				case 1:
-					c = '█';
+					c = '#';
 					break;
 				case 2:
-					c = '#';
+					c = 'X';
 					break;
 				case 3:
 					c = '=';
@@ -78,7 +78,7 @@ public class D13 implements Day
 					c = 'O';
 					break;
 				default:
-					c = '€';
+					c = '�';
 					score = out;
 			}
 			if (0<=posX) tiles.put(new Point(posX, posY), c);
