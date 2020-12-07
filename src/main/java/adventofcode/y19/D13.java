@@ -20,8 +20,8 @@ public class D13 implements Day
 		
 		intcode.run();
 		Map<Point, Character> tiles = getTiles(intcode, new HashMap<>());
-		
-		return tiles.entrySet().stream().filter(p -> p.getValue() == '#').count();
+				
+		return tiles.entrySet().stream().filter(p -> p.getValue() == 'X').count();
 	}
 
 	public Object star2() 
@@ -108,6 +108,6 @@ public class D13 implements Day
 	 */
 	private boolean hasFinished(Map<Point, Character> tiles)
 	{
-		return tiles.entrySet().stream().filter(e -> e.getValue()=='#').count() == 0;
+		return tiles.entrySet().stream().filter(e -> e.getValue()=='X').count() == 0;
 	}
 }

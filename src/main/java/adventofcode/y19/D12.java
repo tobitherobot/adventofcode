@@ -44,28 +44,28 @@ public class D12 implements Day
 		boolean loop = true;
 		long steps = 0;
 		
-		do
-		{
-			// apply all gravities
-			for (int j = 0; j < moons.size(); j++)
-			{
-				for (int k = j+1; k < moons.size(); k++)
-				{
-					applyGravity(moons.get(j), moons.get(k));
-				}
-			}
-			
-			// apply all velocities
-			for (Point3D[] moon : moons)
-			{
-				moon[0].x += moon[1].x;
-				moon[0].y += moon[1].y;
-				moon[0].z += moon[1].z;
-			}
-			
-			steps++;
-		}
-		while (loop);
+//		do
+//		{
+//			// apply all gravities
+//			for (int j = 0; j < moons.size(); j++)
+//			{
+//				for (int k = j+1; k < moons.size(); k++)
+//				{
+//					applyGravity(moons.get(j), moons.get(k));
+//				}
+//			}
+//			
+//			// apply all velocities
+//			for (Point3D[] moon : moons)
+//			{
+//				moon[0].x += moon[1].x;
+//				moon[0].y += moon[1].y;
+//				moon[0].z += moon[1].z;
+//			}
+//			
+//			steps++;
+//		}
+//		while (loop);
 		
 		return steps;
 	}
