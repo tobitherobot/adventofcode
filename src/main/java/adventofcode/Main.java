@@ -6,7 +6,7 @@ public class Main
 	{
 		DayController dc = new DayController();
 		
-		dc.run(8,20);
+		dc.run(9,20);
 		//dc.runYear(19);
 	}
 }
