@@ -148,6 +148,33 @@ public class InputReader
 	}
 	
 	/**
+	 * reads a Boolean matrix
+	 * @param t char for true
+	 * @param f char for false
+	 * @param n char for null
+	 * @return Boolean matrix
+	 */
+	public Boolean[][] readBooleanMatrix(char t, char f, char n)
+	{
+		List<String> lines = readLines();
+		Boolean[][] matrix = new Boolean[lines.size()][];
+		
+		for (int i = 0; i < lines.size(); i++)
+		{
+			Boolean[] line = new Boolean[lines.get(i).length()];
+			
+			for (int j = 0; j < lines.get(i).length(); j++)
+			{
+				if (lines.get(i).charAt(j)==t) line[j] = true;
+				else if (lines.get(i).charAt(j)==f) line[j] = false;
+				else line[j] = null;
+			}
+			matrix[i] = line;
+		}
+		return matrix;
+	}
+	
+	/**
 	 * read a char matrix as list of points
 	 * @param ch character that represents a point
 	 * @return list of points
