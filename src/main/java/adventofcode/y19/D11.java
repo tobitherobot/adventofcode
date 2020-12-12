@@ -36,7 +36,7 @@ public class D11 implements Day
 				.map(Map.Entry::getKey)
 				.collect(Collectors.toList());
 		
-		return InputPrinter.print(points);
+		return "\n" + new InputPrinter().parse(points).get();
 	}
 	
 	/**

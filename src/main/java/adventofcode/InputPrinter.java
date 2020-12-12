@@ -6,50 +6,50 @@ import java.util.Map;
 
 public class InputPrinter 
 {
+	private String s = null;
+	
 	/**
-	 * convert a char matrix to a string
-	 * @param matrix char matrix
-	 * @return string representation of matrix
+	 * print parsed string
 	 */
-	public static String print(char[][] matrix)
+	public void print()
 	{
-		StringBuilder sb = new StringBuilder("\n");
+		System.out.println(s);
+	}
+	
+	/**
+	 * get parsed string
+	 * @return s
+	 */
+	public String get()
+	{
+		return s;
+	}
+	
+	/**
+	 * parse a char matrix
+	 * @param matrix char matrix
+	 */
+	public InputPrinter parse(char[][] matrix)
+	{
+		StringBuilder sb = new StringBuilder();
 		
 		for (int i = 0; i < matrix.length; i++) {
 			sb.append(new String(matrix[i]) + "\n");
 		}
-		return sb.toString();
+		
+		s = sb.toString();
+		return this;
 	}
 	
 	/**
-	 * convert a point-to-char map to a string
-	 * @param map tile map
-	 * @return string representation of map
-	 */
-	public static String print(Map<Point, Character> map)
-	{
-		int maxX = map.entrySet().stream().max((e1, e2) -> e1.getKey().x > e2.getKey().x ? 1 : -1).get().getKey().x;
-		int maxY = map.entrySet().stream().max((e1, e2) -> e1.getKey().y > e2.getKey().y ? 1 : -1).get().getKey().y;
-		char[][] canvas = new char[maxY+1][maxX+1];
-		
-		for (Point p : map.keySet())
-		{
-			canvas[p.y][p.x] = map.get(p);
-		}
-		
-		return print(canvas);
-	}
-	
-	/**
-	 * convert a boolean matrix to a string
+	 * parse a boolean matrix
 	 * @param matrix matrix
 	 * @param t char for true
 	 * @param f char for false
-	 * @return string representation of matrix
 	 */
-	public static String print(boolean[][] matrix, char t, char f)
+	public InputPrinter parse(boolean[][] matrix, char t, char f)
 	{
-		StringBuilder sb = new StringBuilder("\n");
+		StringBuilder sb = new StringBuilder();
 		
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
@@ -59,25 +59,26 @@ public class InputPrinter
 			}
 			sb.append("\n");
 		}
-		return sb.toString();
+		
+		s = sb.toString();
+		return this;
 	}
 	
-	public static String print(boolean[][] matrix)
+	public InputPrinter parse(boolean[][] matrix)
 	{
-		return print(matrix, '#', '.');
+		return parse(matrix, '#', '.');
 	}
 	
 	/**
-	 * convert a Boolean matrix to string
+	 * parse a Boolean matrix
 	 * @param matrix matrix
 	 * @param t char for true
 	 * @param f char for false
 	 * @param n char for null
-	 * @return string representation of matrix
 	 */
-	public static String print(Boolean[][] matrix, char t, char f, char n)
+	public InputPrinter parse(Boolean[][] matrix, char t, char f, char n)
 	{
-		StringBuilder sb = new StringBuilder("\n");
+		StringBuilder sb = new StringBuilder();
 		
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[i].length; j++) {
@@ -88,22 +89,23 @@ public class InputPrinter
 			}
 			sb.append("\n");
 		}
-		return sb.toString();
+		
+		s = sb.toString();
+		return this;
 	}
 	
-	public static String print(Boolean[][] matrix)
+	public InputPrinter parse(Boolean[][] matrix)
 	{
-		return print(matrix, '#', '.', ' ');
+		return parse(matrix, '#', '.', ' ');
 	}
 	
 	/**
-	 * convert a list of points to string
+	 *parse a list of points
 	 * @param points list of points
 	 * @param t char for if point exists
 	 * @param f char for if no point exists
-	 * @return string representation of points
 	 */
-	public static String print(List<Point> points, char t, char f)
+	public InputPrinter parse(List<Point> points, char t, char f)
 	{
 		int minX = Integer.MAX_VALUE;
 		int minY = Integer.MAX_VALUE;
@@ -125,11 +127,29 @@ public class InputPrinter
 		for (Point p : points) {
 			matrix[p.y+offY][p.x+offX] = true;
 		}
-		return print(matrix, t, f);
+		return parse(matrix, t, f);
 	}
 	
-	public static String print(List<Point> points)
+	public InputPrinter parse(List<Point> points)
 	{
-		return print(points, '#', '.');
+		return parse(points, '#', '.');
+	}
+	
+	/**
+	 * parse a point-to-char map
+	 * @param map tile map
+	 */
+	public InputPrinter print(Map<Point, Character> map)
+	{
+		int maxX = map.entrySet().stream().max((e1, e2) -> e1.getKey().x > e2.getKey().x ? 1 : -1).get().getKey().x;
+		int maxY = map.entrySet().stream().max((e1, e2) -> e1.getKey().y > e2.getKey().y ? 1 : -1).get().getKey().y;
+		char[][] canvas = new char[maxY+1][maxX+1];
+		
+		for (Point p : map.keySet())
+		{
+			canvas[p.y][p.x] = map.get(p);
+		}
+		
+		return parse(canvas);
 	}
 }
