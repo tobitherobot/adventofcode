@@ -1,7 +1,6 @@
 package adventofcode.y20;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import adventofcode.Day;
@@ -37,7 +36,6 @@ public class D05 implements Day
 			
 			ids.add(row*8+col);
 		}
-		Collections.sort(ids);
 		
 		for (int i = ids.get(0); i <= ids.get(ids.size()-1); i++) 
 		{
