@@ -46,7 +46,12 @@ public class InputReader
 	 */
 	public String readLine()
 	{
-		return sc.nextLine();
+		StringBuilder sb = new StringBuilder();
+		
+		while (sc.hasNextLine()) {
+			sb.append(sc.nextLine());
+		}
+		return sb.toString();
 	}
 	
 	/**
