@@ -20,6 +20,7 @@ for passport in input:
     mx = max(mx, row*8 + seat)
 print(mx)
 
+# star 2
 ids = []
 for passport in input:
     row = 0
