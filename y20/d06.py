@@ -17,7 +17,7 @@ for line in input:
 sum += len(questions)
 print(sum)
 
-# star 2 todo
+# star 2
 sum = 0
 counts = [0 for i in range(26)]
 questions = 0
@@ -33,7 +33,7 @@ for line in input:
         questions += 1
         for c in line:
             counts[ord(c)-97] += 1
-            
+
 for count in counts:
     if 0<count and count==questions:
         sum += 1
