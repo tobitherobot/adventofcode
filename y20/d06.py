@@ -38,4 +38,3 @@ for count in counts:
     if 0<count and count==questions:
         sum += 1
 print(sum)
-
