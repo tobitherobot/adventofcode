@@ -1,7 +1,4 @@
-from pathlib import Path
-
-p = Path(__file__).with_name("r07.txt")
-with p.open("r") as f:
+with open("y20/r07.txt", "r") as f:
     input = [x.strip().replace(",","").replace(".","").split(" ") for x in f.readlines()]
 
 # bags

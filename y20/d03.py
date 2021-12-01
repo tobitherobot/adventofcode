@@ -1,7 +1,4 @@
-from pathlib import Path
-
-p = Path(__file__).with_name('r03.txt')
-with p.open('r') as f:
+with open("y20/r03.txt", "r") as f:
     slopes = [x.strip() for x in f.readlines()]
 
 # star 1

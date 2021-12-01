@@ -1,7 +1,4 @@
-from pathlib import Path
-
-p = Path(__file__).with_name('r01.txt')
-with p.open('r') as f:
+with open("y20/r01.txt") as f:
     input = [int(x.strip()) for x in f.readlines()]
 
 # star 1
