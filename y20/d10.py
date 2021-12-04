@@ -15,22 +15,16 @@ for i in range(len(input)-1):
         diff3 += 1
 print(diff1*diff3)
 
-# star 2 TODO
-'''
-res = 1
-for i in range(len(input)-1, 0, -1):
+# star 2
+count = {}
+count[input[-1]] = 1
+for i in range(len(input)-2, -1, -1):
     c = 0
-    try:
-        if input[i]-1 in input:
-            c += 1
-        if input[i]-2 in input:
-            c += 1
-        if input[i]-3 in input:
-            c += 1
-    except:
-        pass
-    print(str(input[i]) + " " + str(c))
-    if c>0:
-        res *= c
-print(res)
-'''
+    if input[i]+1 in count:
+        c += count[input[i]+1]
+    if input[i]+2 in count:
+        c += count[input[i]+2]
+    if input[i]+3 in count:
+        c += count[input[i]+3]
+    count[input[i]] = c
+print(count[0])
