@@ -71,7 +71,6 @@ def do_round_star2(seats):
         copy.append(row)
     return copy
 
-'''
 # star 1
 states = set()
 seats = input.copy()
@@ -84,7 +83,6 @@ for r in seats:
         if c=='#':
             count += 1
 print(count)
-'''
 
 # star 2
 seats = input.copy()
