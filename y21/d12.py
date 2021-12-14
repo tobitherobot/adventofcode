@@ -1,7 +1,7 @@
 with open("y21/r12.txt") as b:
     input = [l.strip().split("-") for l in b.readlines()]
 
-class multinode:
+class node:
     def __init__(self, value=None):
         self.value = value
         self.nexts = []
@@ -12,9 +12,9 @@ for l in input:
     b = l[0]
     n = l[1]
     if b not in nodes:
-        nodes[b] = multinode(b)
+        nodes[b] = node(b)
     if n not in nodes:
-        nodes[n] = multinode(n)
+        nodes[n] = node(n)
     nodes[b].nexts.append(nodes[n])
     nodes[n].nexts.append(nodes[b])
 
@@ -42,10 +42,10 @@ def count_nodes(root, c):
         visited_twice = False
     return count
 
-# star 1      
 root = nodes['start']
+
+# star 1      
 print(count_nodes(root, 1))
 
 # star 2        
-root = nodes['start']
 print(count_nodes(root, 2))
