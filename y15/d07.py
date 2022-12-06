@@ -4,7 +4,6 @@ with open("y15/r07.txt") as f:
         spl = l.split(' -> ')
         instr[spl[1].strip()] = spl[0].split(' ')
 
-# star 1
 def calc_value(ch, instr, values):
     if ch not in values.keys():
         if len(instr[ch]) == 1: # value
@@ -37,6 +36,7 @@ def get_value(ch, instr, values):
             calc_value(ch, instr, values)
         return values[ch]
 
+# star 1
 values = {}
 for k in instr.keys():
     calc_value(k, instr, values)
