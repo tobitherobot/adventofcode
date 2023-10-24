@@ -15,6 +15,7 @@ for y in range(15, ymax):
             os.system("python " + path)
             t = round(time.time() * 1000) - crr
             board[y-15][d-1] = t
+            print("y{} d{}: {}ms".format(y, d, t))
 
 with open("times.txt", "w") as f:
     for y in range(15, ymax):
