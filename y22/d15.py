@@ -1,3 +1,17 @@
+def get_distance(p1, p2):
+    return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
+
+def does_overlap(p1, d1, p2, d2):
+    return True if get_distance(p1, p2) <= d1 + d2 else False
+
+def check_coords(p):
+    flag = True
+    for l in input:
+        if does_overlap(l[0], get_distance(l[0], l[1]), p, 0):
+            flag = False
+            break
+    return flag
+
 with open("y22/r15.txt") as f:
     input = []
     line = f.readline().strip()
@@ -7,23 +21,8 @@ with open("y22/r15.txt") as f:
         sub = line[line.index('is') :]
         bx = int(sub[8 : sub.index(',')])
         by = int(sub[sub.index(',')+4 :])
-        input.append([[sy, sx],[by, bx]])
+        input.append([[sy, sx], [by, bx]])
         line = f.readline().strip()
-
-def get_distance(p1, p2):
-    return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
-
-minx = 100000000
-miny = 100000000
-maxx = 0
-maxy = 0
-
-for pair in input:
-    for p in pair:
-        minx = min(minx, p[1])
-        maxx = max(maxx, p[1])
-        miny = min(miny, p[0])
-        maxy = max(maxy, p[0])
 
 # star 1
 y = 2000000
@@ -57,13 +56,38 @@ for r in res:
     sum += (r[1] - r[0])
 print(sum)
 
-print(input)
-
 # star 2
-for i in range(len(input)-1):
-    for j in range(i+1, len(input)):
-        radius = get_distance(input[i][0], input[i][1]) + get_distance(input[j][0], input[j][1])
-        distance = get_distance(input[i][0], input[j][0])
-        if distance < radius:
-            mid = [min(input[i][0][0], input[j][0][0]) + (max(input[i][0][0], input[j][0][0]) - min(input[i][0][0], input[j][0][0])) // 2, min(input[i][0][1], input[j][0][1]) + (max(input[i][0][1], input[j][0][1]) - min(input[i][0][1], input[j][0][1])) // 2]
-            print('{}: {} and {} overlap!'.format(mid, input[i][0], input[j][0]))
+mids = []
+for a in range(len(input)-1):
+    ra = get_distance(input[a][0], input[a][1])
+    for b in range(a+1, len(input)):
+        rb = get_distance(input[b][0], input[b][1])
+        if not does_overlap(input[a][0], ra, input[b][0], rb) and does_overlap(input[a][0], ra+1, input[b][0], rb+1):
+            if get_distance(input[a][0], input[b][0]) % 2 == 0:
+            mid = [min(input[a][0][0], input[b][0][0]) + (max(input[a][0][0], input[b][0][0]) - min(input[a][0][0], input[b][0][0])) // 2, min(input[a][0][1], input[b][0][1]) + (max(input[a][0][1], input[b][0][1]) - min(input[a][0][1], input[b][0][1])) // 2]
+            mids.append(mid)
+
+print(mids)
+dirs = [[-1,-1],[-1,1],[1,-1],[1,1]]
+flag = False
+center = [2000000, 2000000]
+res = [0, 0]
+for mid in mids:
+    for dir in dirs:
+        prev = [mid[0], mid[1]]
+        p = [mid[0], mid[1]]
+        while True:
+            p = [p[0] + dir[0], p[1] + dir[1]]
+            if 0 <= p[0] and p[0] <= 4000000 and 0 <= p[1] and p[1] <= 4000000:
+                if check_coords(p):
+                    res = p
+                    flag = True
+                    break
+            elif get_distance(center, p) > get_distance(center, prev):
+                print('{} and prev {}'.format(p, prev))
+                break
+            prev = [p[0], p[1]]
+    if flag:
+        break
+
+print(res[1] * 4000000 + res[0])
