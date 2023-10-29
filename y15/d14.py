@@ -8,8 +8,10 @@ with open('y15/r14.txt') as f:
 sec = 2503
 mx = 0
 for rein in inp:
+    # calc full cycle
     dist = (sec // (rein[1]+rein[2])) * rein[1] * rein[0]
     rest = sec % (rein[1]+rein[2])
+    # calc part cycle
     if rein[1] <= rest:
         dist += rein[1]*rein[0]
     else:
