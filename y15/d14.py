@@ -18,3 +18,15 @@ for rein in inp:
         dist += rest*rein[0]
     mx = max(mx, dist)
 print(mx)
+
+# star 2
+scores = [0] * len(inp)
+dist = [0] * len(inp)
+for i in range(sec):
+    for j in range(len(inp)):
+        dist[j] += inp[j][0] if i % (inp[j][1]+inp[j][2]) < inp[j][1] else 0
+    mx = max(dist)
+    for j in range(len(scores)):
+        if dist[j] == mx:
+            scores[j] += 1
+print(max(scores))
