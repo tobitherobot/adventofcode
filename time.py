@@ -5,11 +5,13 @@ import os
 dir = os.path.dirname(os.path.realpath(__file__)) + "\\y{}\\d{}.py"
 ymax = 23
 board = [[0]*25 for i in range (ymax - 15)]
+print(dir)
 
 for y in range(15, ymax):
     for d in range(1, 26):
         day = ("0" if d < 10 else "") + str(d)
         path = dir.format(y, day) 
+        print(path)
         if exists(path):
             crr = round(time.time() * 1000)
             os.system("python " + path)
